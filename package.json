@@ -7,9 +7,8 @@
   "author": "",
   "sideEffects": false,
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/nest-utils.esm.js",
   "typings": "dist/index.d.ts",
-  "type": "module",
   "files": [
     "src/",
     "dist/",
