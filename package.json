@@ -1,125 +1,120 @@
 {
   "name": "nest-utils",
-  "version": "1.0.0",
-  "description": "Nest Utils Package",
-  "main": "./lib/src/index.js",
-  "files": [
-    "lib/**/*"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "clean": "rm -rf ./lib/",
-    "cm": "cz",
-    "lint": "eslint ./src/ --fix",
-    "prepare": "husky install",
-    "semantic-release": "semantic-release",
-    "test:watch": "jest --watch",
-    "test": "jest --coverage",
-    "typecheck": "tsc --noEmit"
-  },
+  "version": "0.0.0-development",
+  "private": false,
+  "description": "TypeScript library template to focus on ⌨️ coding, 🙌 collaborating and 🚀 shipping",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryansonshine/typescript-npm-package-template.git"
+    "url": "https://github.com/vvo/typescript-library-template.git"
   },
   "license": "MIT",
-  "author": {
-    "name": "Ryan Sonshine",
-    "email": "ryansonshine@users.noreply.github.com",
-    "url": "https://github.com/ryansonshine"
-  },
-  "engines": {
-    "node": ">=12.0"
-  },
-  "keywords": [
-    "boilerplate",
-    "template",
-    "typescript",
-    "vscode",
-    "jest",
-    "husky",
-    "commitizen",
-    "semantic-release",
-    "codecov"
+  "author": "",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/typescript-library-template.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "src/",
+    "dist/",
+    "LICENSE",
+    "README.md"
   ],
-  "bugs": {
-    "url": "https://github.com/ryansonshine/typescript-npm-package-template/issues"
+  "scripts": {
+    "build": "tsdx build",
+    "format": "tsdx lint src --fix",
+    "lint": "tsdx lint src",
+    "prepare": "tsdx build",
+    "semantic-release": "semantic-release",
+    "start": "tsdx watch",
+    "test": "tsdx test"
   },
-  "homepage": "https://github.com/ryansonshine/typescript-npm-package-template#readme",
+  "prettier": {
+    "trailingComma": "all"
+  },
   "dependencies": {
     "@nestjs/common": "8.1.2",
     "@nestjs/core": "8.1.2",
     "@nestjs/jwt": "8.0.0",
+    "@nestjs/platform-express": "8.4.7",
     "@nestjs/swagger": "5.1.4",
+    "@nestjs/typeorm": "8.0.2",
     "@nestjsx/crud": "5.0.0-alpha.3",
-    "@nestjsx/util": "^5.0.0-alpha.3",
-    "cookie-parser": "1.4.6",
-    "dotenv": "10.0.0",
+    "@nestjsx/crud-typeorm": "5.0.0-alpha.3",
+    "@types/express": "4.17.13",
+    "cookie-parser": "1.4.5",
+    "dotenv": "16.0.1",
     "swagger-ui-express": "4.1.6"
   },
   "devDependencies": {
-    "@ryansonshine/commitizen": "4.2.8",
-    "@ryansonshine/cz-conventional-changelog": "3.3.4",
-    "@types/cookie-parser": "^1.4.3",
-    "@types/jest": "27.5.2",
-    "@types/node": "12.20.11",
-    "@typescript-eslint/eslint-plugin": "4.22.0",
-    "@typescript-eslint/parser": "4.22.0",
-    "conventional-changelog-conventionalcommits": "5.0.0",
-    "husky": "6.0.0",
-    "jest": "^27.2.0",
-    "semantic-release": "19.0.2",
-    "ts-jest": "27.0.5",
-    "ts-node": "10.2.1",
-    "typescript": "4.2.4"
+    "@types/cookie-parser": "1.4.2",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/parser": "4.33.0",
+    "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-jest": "25.0.1",
+    "prettier-plugin-packagejson": "2.2.13",
+    "semantic-release": "17.2.4",
+    "semantic-release-cli": "5.4.4",
+    "tsdx": "0.14.1",
+    "tslib": "2.4.0",
+    "typescript": "4.0.8"
   },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/@ryansonshine/cz-conventional-changelog"
-    }
+  "engines": {
+    "node": ">=12"
   },
-  "release": {
-    "branches": [
-      "main"
+  "eslint": {
+    "env": {
+      "es6": true,
+      "jest": true,
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2019,
+      "sourceType": "module"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:jest/recommended",
+      "plugin:import/recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended"
     ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
+    "rules": {
+      "arrow-body-style": [
+        "error",
+        "always"
+      ],
+      "curly": "error",
+      "import/order": [
+        "error",
         {
-          "preset": "conventionalcommits",
-          "releaseRules": [
-            {
-              "type": "build",
-              "scope": "deps",
-              "release": "patch"
-            }
+          "newlines-between": "always"
+        }
+      ]
+    },
+    "settings": {
+      "import/extensions": [
+        ".ts"
+      ],
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".ts"
           ]
         }
-      ],
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "preset": "conventionalcommits",
-          "presetConfig": {
-            "types": [
-              {
-                "type": "feat",
-                "section": "Features"
-              },
-              {
-                "type": "fix",
-                "section": "Bug Fixes"
-              },
-              {
-                "type": "build",
-                "section": "Dependencies and Other Build Updates",
-                "hidden": false
-              }
-            ]
-          }
-        }
-      ],
-      "@semantic-release/npm",
-      "@semantic-release/github"
+      }
+    }
+  },
+  "renovate": {
+    "extends": [
+      "config:js-lib",
+      ":automergePatch",
+      ":automergeBranch",
+      ":automergePatch",
+      ":automergeBranch",
+      ":automergeLinters",
+      ":automergeTesters",
+      ":automergeTypes"
     ]
   }
 }

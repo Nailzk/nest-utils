@@ -1,1 +1,1 @@
-export * from './crud-request.interceptor';
+export * from './user-crud-request.interceptor'
