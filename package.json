@@ -3,16 +3,13 @@
   "version": "0.0.0-development",
   "private": false,
   "description": "TypeScript library template to focus on ⌨️ coding, 🙌 collaborating and 🚀 shipping",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vvo/typescript-library-template.git"
-  },
   "license": "MIT",
   "author": "",
   "sideEffects": false,
   "main": "dist/index.js",
-  "module": "dist/typescript-library-template.esm.js",
+  "module": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "type": "module",
   "files": [
     "src/",
     "dist/",
