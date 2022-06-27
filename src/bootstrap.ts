@@ -1,3 +1,4 @@
+import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
@@ -7,10 +8,15 @@ import * as dotenv from "dotenv";
 
 const env = process.env as any;
 
+const serviceName = env.SERVICE || "Service";
+const PORT = env.PORT || 3000;
+
 export async function bootstrap(
   AppModule: any,
   beforeStartHandler?: (app: NestExpressApplication) => void,
 ) {
+  const logger = new Logger(serviceName);
+
   dotenv.config();
   beforeStartHandler;
 
@@ -20,14 +26,16 @@ export async function bootstrap(
   app.useGlobalInterceptors(new CrudRequestInterceptor());
 
   const config = new DocumentBuilder()
-    .setTitle(env.SERVICE || "Service")
+    .setTitle(serviceName)
     .setVersion("1.0")
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("swagger", app, document);
 
-  await app.listen(env.PORT || 3000);
+  await app.listen(PORT);
+
+  logger.log(`Application started on port ${PORT}`);
 
   return app;
 }
