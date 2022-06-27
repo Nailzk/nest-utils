@@ -23,7 +23,7 @@ import { CrudBaseInterceptor } from "@nestjsx/crud/lib/interceptors/crud-base.in
 import { isNil, isFunction, isArrayFull, hasLength } from "@nestjsx/util";
 
 @Injectable()
-export class CrudRequestInterceptor
+export class UserRequestInterceptor
     extends CrudBaseInterceptor
     implements NestInterceptor
 {
