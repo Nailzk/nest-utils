@@ -1,10 +1,9 @@
 import { NestFactory } from "@nestjs/core";
+import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { CrudRequestInterceptor } from "@nestjsx/crud";
 import cookieParser from "cookie-parser";
-import { NestExpressApplication } from "@nestjs/platform-express";
 import * as dotenv from "dotenv";
-import { UserRequestInterceptor } from "./interceptors";
 
 const env = process.env as any;
 
@@ -19,7 +18,6 @@ export async function bootstrap(
 
   app.use(cookieParser());
   app.useGlobalInterceptors(new CrudRequestInterceptor());
-  app.useGlobalInterceptors(new UserRequestInterceptor());
 
   const config = new DocumentBuilder()
     .setTitle(env.SERVICE || "Service")
