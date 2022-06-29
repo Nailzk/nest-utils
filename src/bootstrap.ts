@@ -1,10 +1,11 @@
-import { Logger } from "@nestjs/common";
+import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { CrudRequestInterceptor } from "@nestjsx/crud";
 import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
+import { HttpExceptionFilter } from "./http-exception.filter";
 
 const env = process.env as any;
 
@@ -24,6 +25,8 @@ export async function bootstrap(
 
   app.use(cookieParser());
   app.useGlobalInterceptors(new CrudRequestInterceptor());
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle(serviceName)
